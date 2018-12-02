@@ -1,7 +1,7 @@
-title: JKAN
-greeting: Welcome to JKAN
+title: Sistemas de Informação - UFV CRP
+greeting: Bem Vindo ao Repositório
 description: A lightweight, backend-free open data portal, powered by Jekyll.
-baseurl: /jkan
+baseurl: /SI-Repo
 logo: /img/jkan.png
 
 # Site theme
