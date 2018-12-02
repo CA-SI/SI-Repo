@@ -1,0 +1,6 @@
+{% for disciplina in include.disciplinas %}
+<disciplina>
+  <h3><a href="{{ site.baseurl }}{{ disciplina.url }}">{{ disciplina.title }}</a></h3>
+  {{ disciplina.notes | truncate: 300, '...' }}
+</disciplina>
+{% endfor %}

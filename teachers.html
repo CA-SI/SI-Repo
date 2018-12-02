@@ -1,0 +1,26 @@
+---
+title: Teachers
+layout: default
+permalink: /teachers/
+---
+{% include breadcrumbs.html %}
+
+<a href="{{ site.baseurl }}/add-teacher/" class="btn btn-default pull-right admin-only" data-hook="add-teacher-btn"><i class="fa fa-plus"></i> Add Teacher</a>
+
+{% for teacher in site.teachers %}
+  {% assign disciplina_count = site.disciplinas | where:"teacher", teacher.title | size %}
+  <div class="media">
+    <div class="media-left">
+      {% if teacher.logo and teacher.logo != empty %}
+        <a href="{{ site.baseurl }}{{ teacher.url }}" class="teacher-thumbnail">
+          <img class="media-object" src="{{ teacher.logo }}" alt="{{ teacher.title }}">
+        </a>
+      {% endif %}
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{{ site.baseurl }}{{ teacher.url }}">{{ teacher.title }}</a></h4>
+      <p>{{ teacher.description }}</p>
+      <p><a href="{{ site.baseurl }}/disciplinas/?teacher={{ teacher.title | slugify }}">{{ disciplina_count }} disciplinas</a></p>
+    </div>
+  </div>
+{% endfor %}

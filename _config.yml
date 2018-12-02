@@ -11,39 +11,39 @@ jkan_theme: Default
 github_client_id: 
 gatekeeper_host: 
 
-# Dataset schema
+# Disciplina schema
 schema: default
 
 # Nav bar
 navigation:
-  - title: Datasets
-    url: /datasets/
-  - title: Organizations
-    url: /organizations/
+  - title: Disciplinas
+    url: /disciplinas/
+  - title: Teachers
+    url: /teachers/
 
 # Collections
 collections:
-  datasets:
+  disciplinas:
     output: true
-    permalink: /datasets/:path/
-  organizations:
+    permalink: /disciplinas/:path/
+  teachers:
     output: true
-    permalink: /organizations/:path/
+    permalink: /teachers/:path/
 
 # Collections (cont'd)
 defaults:
   - scope:
       path: ""
-      type: datasets
+      type: disciplinas
     values:
-      layout: dataset
+      layout: disciplina
       category: Uncategorized
-      organization: N/A
+      teacher: N/A
   - scope:
       path: ""
-      type: organizations
+      type: teachers
     values:
-      layout: organization
+      layout: teacher
 
 # Markdown settings
 markdown: kramdown

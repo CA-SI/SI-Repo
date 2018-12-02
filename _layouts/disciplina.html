@@ -1,33 +1,33 @@
 ---
 layout: default
 ---
-{% include breadcrumbs.html parent="Datasets" %}
+{% include breadcrumbs.html parent="Disciplinas" %}
 {% assign schema = page.schema | default: site.schema %}
-{% assign dataset_fields = site.data.schemas[schema].dataset_fields %}
-{% assign dataset_system_fields = "title|organization|notes|license" | split: "|" %}
+{% assign disciplina_fields = site.data.schemas[schema].disciplina_fields %}
+{% assign disciplina_system_fields = "title|teacher|notes|license" | split: "|" %}
 {% assign resource_fields = site.data.schemas[schema].resource_fields %}
 {% assign resource_system_fields = "name|url|format|description" | split: "|" %}
 
-{% assign organization = site.organizations | where:"title",page.organization | first %}
-{% capture organization_url %}{{ site.baseurl }}/datasets/?organization={{ organization.title | slugify }}{% endcapture %}
+{% assign teacher = site.teachers | where:"title",page.teacher | first %}
+{% capture teacher_url %}{{ site.baseurl }}/disciplinas/?teacher={{ teacher.title | slugify }}{% endcapture %}
 
 <div data-component="view-switcher">
-  <div class="row" data-component="dataset-display" data-hook="view" data-view="display" typeof="dcat:Dataset" resource="{{ page.url }}">
-    {% if organization %}
-      <div class="col-sm-3" property="dct:publisher" resource="{{ organization_url }}">
+  <div class="row" data-component="disciplina-display" data-hook="view" data-view="display" typeof="dcat:Disciplina" resource="{{ page.url }}">
+    {% if teacher %}
+      <div class="col-sm-3" property="dct:publisher" resource="{{ teacher_url }}">
         <div class="panel panel-default">
             <div class="panel-heading">
-              {% if organization.logo and organization.logo != empty %}
-              <a href="{{ site.baseurl }}/datasets/?organization={{ organization.title | slugify }}" class="thumbnail"><img src="{{ organization.logo }}" alt="{{ organization.title }} logo"></a>
+              {% if teacher.logo and teacher.logo != empty %}
+              <a href="{{ site.baseurl }}/disciplinas/?teacher={{ teacher.title | slugify }}" class="thumbnail"><img src="{{ teacher.logo }}" alt="{{ teacher.title }} logo"></a>
               {% endif %}
             </div>
             <div class="panel-body">
               <h3>
-                <a href="{{ organization_url }}" about="{{ organization_url }}" property="foaf:homepage">
-                  <span property="foaf:name">{{ organization.title }}</span>
+                <a href="{{ teacher_url }}" about="{{ teacher_url }}" property="foaf:homepage">
+                  <span property="foaf:name">{{ teacher.title }}</span>
                 </a>
               </h3>
-              {{ organization.description }}
+              {{ teacher.description }}
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ layout: default
     {% endif %}
       <h1>
         <span property="dct:title">{{ page.title }}</span>
-        <a href="?view=edit" class="pull-right btn btn-default admin-only" data-hook="edit-dataset-btn">Edit</a>
+        <a href="?view=edit" class="pull-right btn btn-default admin-only" data-hook="edit-disciplina-btn">Edit</a>
       </h1>
       <p property="dct:description">{{ page.notes }}</p>
 
@@ -71,7 +71,7 @@ layout: default
       </ul>
 
       <h2>Additional Info</h2>
-      <table class="table table-striped dataset-details">
+      <table class="table table-striped disciplina-details">
         {% if page.license and page.license != empty %}
           <tr>
             <th>License</th>
@@ -82,8 +82,8 @@ layout: default
             </td>
           </tr>
         {% endif %}
-        {% for field in dataset_fields %}
-          {% unless dataset_system_fields contains field.field_name %}
+        {% for field in disciplina_fields %}
+          {% unless disciplina_system_fields contains field.field_name %}
             {% assign value = page[field[field_name]] %}
             {% if value %}
               {% if field.display_template %}
@@ -104,7 +104,7 @@ layout: default
 
   <div class="row" data-hook="view" data-view="edit">
     <div class="col-sm-8 col-sm-offset-2">
-      {% include dataset-form.html dataset=page %}
+      {% include disciplina-form.html disciplina=page %}
     </div>
     <div class="col-sm-2">
       <a href="{{ site.baseurl }}{{ page.url }}" class="btn btn-default pull-right">Cancel</a>

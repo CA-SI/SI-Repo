@@ -1,12 +1,12 @@
 # To add fields, make a new schema file in this directory
 # and change the schema setting in _config.yml to its name
-dataset_fields:
+disciplina_fields:
   - field_name: title
     label: Title
     datajson: title
-  - field_name: organization
-    label: Organization
-    form_template: form/organization.html
+  - field_name: teacher
+    label: Teacher
+    form_template: form/teacher.html
     datajson: publisher.name
   - field_name: notes
     label: Description
@@ -50,7 +50,7 @@ resource_fields:
       - shp
       - xml
 
-organization_fields:
+teacher_fields:
   - field_name: title
     label: Title
   - field_name: description

@@ -1,0 +1,29 @@
+{% assign schema = page.schema | default: site.schema %}
+{% assign teacher_fields = site.data.schemas[schema].teacher_fields %}
+{% assign teacher_system_fields = "title|description|logo" | split: "|" %}
+{% assign teachers = site.collections | where: "label", "teachers" | first %}
+<form data-component="form"
+  data-file-dir="{{ teachers.relative_directory }}"
+  data-render-dir="teachers"
+  {% if include.teacher %}
+    data-file-path="{{ include.teacher.path }}"
+    data-render-path="{{ include.teacher.url }}"
+  {% endif %}>
+  <input type="hidden" id="schema" name="schema" value="{{ schema }}">
+
+  <fieldset>
+    {% for field in teacher_fields %}
+      {% assign template = field.form_template | default: "form/text.html" %}
+      {% assign field_name = field.field_name %}
+      {% assign value = include.teacher[field_name] %}
+      {% include {{ template }} field=field field_name=field_name value=value %}
+    {% endfor %}
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  {% if include.teacher %}
+    <button class="btn btn-danger" data-component="delete-page-button" data-file-path="{{ include.teacher.path }}">
+      <i class="fa fa-trash"></i> Delete teacher
+    </button>
+  {% endif %}
+</form>

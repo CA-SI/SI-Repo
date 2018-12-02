@@ -1,0 +1,23 @@
+---
+title: Disciplinas
+layout: default
+permalink: /disciplinas/
+---
+{% include breadcrumbs.html %}
+
+<div class="row">
+  <div class="col-sm-4">
+
+    <h3>Categories</h3>
+    <div class="list-group" data-component="categories-filter" data-show="5"></div>
+
+    <h3>Teachers</h3>
+    <div class="list-group" data-component="teachers-filter" data-show="15"></div>
+  </div>
+  <div class="col-sm-8" data-component="disciplinas-list">
+    <h3 class="disciplinas-count" data-hook="disciplinas-count"></h3>
+    <a href="{{ site.baseurl }}/add-disciplina/" class="btn btn-default pull-right admin-only" data-hook="add-disciplina-btn"><i class="fa fa-plus"></i> Add Disciplina</a>
+    <input type="text" data-hook="search-query" placeholder="Search..." class="form-control">
+    <div data-hook="disciplinas-items"></div>
+  </div>
+</div>

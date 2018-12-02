@@ -1,7 +1,7 @@
 /**
  * Usage:
  * <button data-component="delete-page-button"
- *   data-file-path="_datasets/foo.md">Delete</button>
+ *   data-file-path="_disciplinas/foo.md">Delete</button>
  */
 /* global settings */
 import notie from 'notie'

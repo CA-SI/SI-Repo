@@ -1,0 +1,22 @@
+---
+layout: default
+title: Add Disciplina
+permalink: /add-disciplina/
+---
+{% include breadcrumbs.html parent="Disciplinas" %}
+
+<div class="alert alert-success" role="alert" data-hook="alert-success" style="display: none;">
+  This disciplina has been <a href="#" data-hook="commit-url">created</a> and the page is currently generating.
+  It will be available momentarily at <a href="#" data-hook="disciplina-url"></a>
+</div>
+
+<div class="alert alert-danger" role="alert" data-hook="alert-error" style="display: none;">
+  There was an error saving this page
+</div>
+
+<div class="row" data-hook="edit-view">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h1>Add Disciplina</h1>
+    {% include disciplina-form.html %}
+  </div>
+</div>
