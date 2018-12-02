@@ -18,7 +18,7 @@ schema: default
 navigation:
   - title: Disciplinas
     url: /disciplinas/
-  - title: Teachers
+  - title: Professores
     url: /teachers/
 
 # Collections

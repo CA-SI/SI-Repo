@@ -1,15 +1,15 @@
 <nav>
   <ul class="pager">
     {% if include.paginator.previous_page %}
-      <li><a href="{{ site.baseurl }}{{ include.paginator.previous_page_path }}">Previous</a></li>
+      <li><a href="{{ site.baseurl }}{{ include.paginator.previous_page_path }}">Anterior</a></li>
     {% else %}
-      <li class="disabled"><a>Previous</a></li>
+      <li class="disabled"><a>Anterior</a></li>
     {% endif %}
 
     {% if include.paginator.next_page %}
-      <li><a href="{{ site.baseurl }}{{ include.paginator.next_page_path }}">Next</a></li>
+      <li><a href="{{ site.baseurl }}{{ include.paginator.next_page_path }}">Próximo</a></li>
     {% else %}
-      <li class="disabled"><a>Next</a></li>
+      <li class="disabled"><a>Próximo</a></li>
     {% endif %}
   </ul>
 </nav>

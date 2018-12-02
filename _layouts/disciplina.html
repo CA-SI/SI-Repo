@@ -37,17 +37,17 @@ layout: default
     {% endif %}
       <h1>
         <span property="dct:title">{{ page.title }}</span>
-        <a href="?view=edit" class="pull-right btn btn-default admin-only" data-hook="edit-disciplina-btn">Edit</a>
+        <a href="?view=edit" class="pull-right btn btn-default admin-only" data-hook="edit-disciplina-btn">Editar</a>
       </h1>
       <p property="dct:description">{{ page.notes }}</p>
 
-      <h2>Resources</h2>
+      <h2>Materiais</h2>
       <ul>
         {% for resource in page.resources %}
         <li data-hook="resource-item" property='dcat:distribution' typeof='dcat:Distribution'>
           <a href="{{ resource.url }}" property='dcat:accessURL'><span property="dct:title">{{ resource.name }}</span></a>
           {% if resource.format %}<span class="label label-default" property='dcat:mediaType'>{{ resource.format}}</span>{% endif %}
-          <a href="#" class="show-resource-details" data-hook="show-resource-details">(Details)</a>
+          <a href="#" class="show-resource-details" data-hook="show-resource-details">(Detalhes)</a>
           {% if resource.description %}<div class="resource-description">{{ resource.description }}</div>{% endif %}
           <table class="table table-striped table-condensed resource-details" data-hook="resource-details">
             {% for field in resource_fields %}
@@ -70,11 +70,11 @@ layout: default
         {% endfor %}
       </ul>
 
-      <h2>Additional Info</h2>
+      <h2>Informações Adicionais</h2>
       <table class="table table-striped disciplina-details">
         {% if page.license and page.license != empty %}
           <tr>
-            <th>License</th>
+            <th>Licença</th>
             <td>
               <a property="dct:license" resource="{{ page.license }}" href="{{ page.license }}">
                 {{ site.data.licenses[page.license] }}
@@ -107,7 +107,7 @@ layout: default
       {% include disciplina-form.html disciplina=page %}
     </div>
     <div class="col-sm-2">
-      <a href="{{ site.baseurl }}{{ page.url }}" class="btn btn-default pull-right">Cancel</a>
+      <a href="{{ site.baseurl }}{{ page.url }}" class="btn btn-default pull-right">Cancelar</a>
     </div>
   </div>
 </div>

@@ -23,7 +23,7 @@
     {% endfor %}
   </fieldset>
 
-  <h2>Resources</h2>
+  <h2>Materiais</h2>
   <div data-component="editable-list" data-item-label="resource">
     <div data-hook="items">
     {% for resource in include.disciplina.resources %}
@@ -31,7 +31,7 @@
     {% endfor %}
     </div>
 
-    <button type="button" class="btn btn-default" data-hook="add-item-btn" title="Add resource"><i class="fa fa-plus"></i> Add Resource</button>
+    <button type="button" class="btn btn-default" data-hook="add-item-btn" title="Adicionar Material"><i class="fa fa-plus"></i> Add Resource</button>
 
     <script type="text/template" data-hook="item-template">
     {% include disciplina-form-resource.html %}
@@ -52,10 +52,10 @@
 
   </fieldset>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Enviar</button>
   {% if include.disciplina %}
     <button class="btn btn-danger" data-component="delete-page-button" data-file-path="{{ include.disciplina.path }}">
-      <i class="fa fa-trash"></i> Delete disciplina
+      <i class="fa fa-trash"></i> Deletar Disciplina
     </button>
   {% endif %}
 </form>
