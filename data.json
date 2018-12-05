@@ -2,31 +2,31 @@
 ---
 {
   "conformsTo": "https://project-open-data.cio.gov/v1.1/schema",
-  "disciplina": [{% for disciplina in site.disciplinas %}{% capture temp %}
-    {% assign schema = disciplina.schema | default: site.schema %}
-    {% assign disciplina_fields = site.data.schemas[schema].disciplina_fields %}
+  "subject": [{% for subject in site.subjects %}{% capture temp %}
+    {% assign schema = subject.schema | default: site.schema %}
+    {% assign subject_fields = site.data.schemas[schema].subject_fields %}
     {% assign resource_fields = site.data.schemas[schema].resource_fields %}
 
-    {% assign f_title = disciplina_fields | where: "datajson", "title" | first %}
-    {% assign title = disciplina[f_title[field_name]] %}
+    {% assign f_title = subject_fields | where: "datajson", "title" | first %}
+    {% assign title = subject[f_title[field_name]] %}
 
-    {% assign f_publisher_name = disciplina_fields | where: "datajson", "publisher.name" | first %}
-    {% assign publisher_name = disciplina[f_publisherName[field_name]] %}
+    {% assign f_publisher_name = subject_fields | where: "datajson", "publisher.name" | first %}
+    {% assign publisher_name = subject[f_publisherName[field_name]] %}
 
-    {% assign f_license = disciplina_fields | where: "datajson", "license" | first %}
-    {% assign license = disciplina[f_license[field_name]] %}
+    {% assign f_license = subject_fields | where: "datajson", "license" | first %}
+    {% assign license = subject[f_license[field_name]] %}
 
-    {% assign f_description = disciplina_fields | where: "datajson", "description" | first %}
-    {% assign description = disciplina[f_description[field_name]] %}
+    {% assign f_description = subject_fields | where: "datajson", "description" | first %}
+    {% assign description = subject[f_description[field_name]] %}
 
-    {% assign f_category = disciplina_fields | where: "datajson", "category" | first %}
-    {% assign category = disciplina[f_category[field_name]] %}
+    {% assign f_category = subject_fields | where: "datajson", "category" | first %}
+    {% assign category = subject[f_category[field_name]] %}
 
-    {% assign f_contact_point_fn = disciplina_fields | where: "datajson", "contactPoint.fn" | first %}
-    {% assign contact_point_fn = disciplina[f_contact_point_fn[field_name]] %}
+    {% assign f_contact_point_fn = subject_fields | where: "datajson", "contactPoint.fn" | first %}
+    {% assign contact_point_fn = subject[f_contact_point_fn[field_name]] %}
 
-    {% assign f_contact_point_has_email = disciplina_fields | where: "datajson", "contactPoint.hasEmail" | first %}
-    {% assign contact_point_has_email = disciplina[f_contact_point_has_email[field_name]] %}
+    {% assign f_contact_point_has_email = subject_fields | where: "datajson", "contactPoint.hasEmail" | first %}
+    {% assign contact_point_has_email = subject[f_contact_point_has_email[field_name]] %}
 
     {% assign f_dist_title = resource_fields | where: "datajson", "distribution.title" | first %}
     {% assign f_dist_download_url = resource_fields | where: "datajson", "distribution.downloadURL" | first %}
@@ -45,8 +45,8 @@
         "hasEmail": {{ contact_point_has_email | jsonify }}{% endif %}
       }{% endif %}{% if license != '' %},
       "license": "{{ license }}"
-      {% endif %}{% if disciplina.resources %},
-      "distribution": [{% for distribution in disciplina.resources %}{% capture temp %}
+      {% endif %}{% if subject.resources %},
+      "distribution": [{% for distribution in subject.resources %}{% capture temp %}
         {% assign dist_title = distribution[f_dist_title[field_name]] %}
         {% assign dist_download_url = distribution[f_dist_download_url[field_name]] %}
         {% assign dist_format = distribution[f_dist_format[field_name]] %}{% endcapture %}

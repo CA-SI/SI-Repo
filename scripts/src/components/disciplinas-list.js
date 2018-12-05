@@ -1,9 +1,9 @@
 /**
  * Usage:
- * <div data-component="disciplinas-list">
- *   <h3 class="disciplinas-count" data-hook="disciplinas-count"></h3>
+ * <div data-component="subjects-list">
+ *   <h3 class="subjects-count" data-hook="subjects-count"></h3>
  *   <input type="text" data-hook="search-query" placeholder="Search..." class="form-control">
- *   <div data-hook="disciplinas-items"></div>
+ *   <div data-hook="subjects-items"></div>
  * </div>
  *
  * Optionally, add filters to the component element such as
@@ -12,55 +12,55 @@
  */
 import {pick, defaults, filter} from 'lodash'
 
-import TmplDisciplinaItem from '../templates/disciplina-item'
-import {queryByHook, setContent, createDisciplinaFilters} from '../util'
+import TmplSubjectItem from '../templates/subject-item'
+import {queryByHook, setContent, createSubjectFilters} from '../util'
 
 export default class {
   constructor (opts) {
     const elements = {
-      disciplinasItems: queryByHook('disciplinas-items', opts.el),
-      disciplinasCount: queryByHook('disciplinas-count', opts.el),
+      subjectsItems: queryByHook('subjects-items', opts.el),
+      subjectsCount: queryByHook('subjects-count', opts.el),
       searchQuery: queryByHook('search-query', opts.el)
     }
 
-    // Filter disciplinas and render in items container
+    // Filter subjects and render in items container
     const paramFilters = pick(opts.params, ['teacher', 'category'])
     const attributeFilters = pick(opts.el.data(), ['teacher', 'category'])
-    const filters = createDisciplinaFilters(defaults(paramFilters, attributeFilters))
-    const filteredDisciplinas = filter(opts.disciplinas, filters)
-    const disciplinasMarkup = filteredDisciplinas.map(TmplDisciplinaItem)
-    setContent(elements.disciplinasItems, disciplinasMarkup)
+    const filters = createSubjectFilters(defaults(paramFilters, attributeFilters))
+    const filteredSubjects = filter(opts.subjects, filters)
+    const subjectsMarkup = filteredSubjects.map(TmplSubjectItem)
+    setContent(elements.subjectsItems, subjectsMarkup)
 
-    // // Disciplina count
-    const disciplinaSuffix =  filteredDisciplinas.length > 1 ? 's' : ''
-    const disciplinasCountMarkup = filteredDisciplinas.length + ' disciplina' + disciplinaSuffix;
-    setContent(elements.disciplinasCount, disciplinasCountMarkup)
+    // // Subject count
+    const subjectSuffix =  filteredSubjects.length > 1 ? 's' : ''
+    const subjectsCountMarkup = filteredSubjects.length + ' subject' + subjectSuffix;
+    setContent(elements.subjectsCount, subjectsCountMarkup)
 
-    // Search disciplinas listener
-    const searchFunction = this._createSearchFunction(filteredDisciplinas)
+    // Search subjects listener
+    const searchFunction = this._createSearchFunction(filteredSubjects)
     elements.searchQuery.on('keyup', (e) => {
       const query = e.currentTarget.value
 
-      // Disciplinas
+      // Subjects
       const results = searchFunction(query)
-      const resultsMarkup = results.map(TmplDisciplinaItem)
-      setContent(elements.disciplinasItems, resultsMarkup)
+      const resultsMarkup = results.map(TmplSubjectItem)
+      setContent(elements.subjectsItems, resultsMarkup)
 
-      // Disciplina count
-      const resultsCountMarkup = results.length + ' disciplinas'
-      setContent(elements.disciplinasCount, resultsCountMarkup)
+      // Subject count
+      const resultsCountMarkup = results.length + ' subjects'
+      setContent(elements.subjectsCount, resultsCountMarkup)
     })
   }
 
-  // Returns a function that can be used to search an array of disciplinas
-  // The function returns the filtered array of disciplinas
-  _createSearchFunction (disciplinas) {
+  // Returns a function that can be used to search an array of subjects
+  // The function returns the filtered array of subjects
+  _createSearchFunction (subjects) {
     const keys = ['title', 'notes']
     return function (query) {
       const lowerCaseQuery = query.toLowerCase()
-      return filter(disciplinas, function (disciplina) {
+      return filter(subjects, function (subject) {
         return keys.reduce(function (previousValue, key) {
-          return previousValue || (disciplina[key] && disciplina[key].toLowerCase().indexOf(lowerCaseQuery) !== -1)
+          return previousValue || (subject[key] && subject[key].toLowerCase().indexOf(lowerCaseQuery) !== -1)
         }, false)
       })
     }

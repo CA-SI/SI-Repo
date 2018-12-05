@@ -1,7 +1,7 @@
 {
-  "name": "es6-boilerplate",
+  "name": "si-repo",
   "version": "1.0.0",
-  "description": "Front-end project boilerplate with es6 build tools. Includes babel, webpack, and npm scripts.",
+  "description": "Um portal leve, livre de backend, de dados abertos e colaborativo.",
   "main": "scripts/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timwis/es6-boilerplate.git"
+    "url": "git+https://github.com/CA-SI/SI-Repo.git"
   },
   "author": "timwis <tim@timwis.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/timwis/es6-boilerplate/issues"
+    "url": "https://github.com/CA-SI/SI-Repo/issues"
   },
-  "homepage": "https://github.com/timwis/es6-boilerplate#readme",
+  "homepage": "https://github.com/CA-SI/SI-Repo#readme",
   "devDependencies": {
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",

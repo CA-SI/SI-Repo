@@ -30,14 +30,14 @@ export function slugify (text) {
 
 
 // Given an object of filters to use, returns a function to be used by _.filter()
-export function createDisciplinaFilters (filters) {
-  return function (disciplina) {
+export function createSubjectFilters (filters) {
+  return function (subject) {
     const conditions = []
     if (filters.teacher) {
-      conditions.push(disciplina.teacher && slugify(disciplina.teacher) === filters.teacher)
+      conditions.push(subject.teacher && slugify(subject.teacher) === filters.teacher)
     }
     if (filters.category) {
-      conditions.push(disciplina.category && slugify(disciplina.category).indexOf(filters.category) !== -1)
+      conditions.push(subject.category && slugify(subject.category).indexOf(filters.category) !== -1)
     }
     return conditions.every(function (value) { return !!value })
   }

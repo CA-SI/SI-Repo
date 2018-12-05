@@ -6,15 +6,17 @@ import {omit} from 'lodash'
 
 import UserModel from './models/user'
 import Navigation from './components/navigation'
-import DisciplinasList from './components/disciplinas-list'
+import SubjectsList from './components/subjects-list'
+import PeriodsFilter from './components/periods-filter'
 import CategoriesFilter from './components/categories-filter'
 import TeachersFilter from './components/teachers-filter'
 import Form from './components/form'
-import DisciplinaForm from './components/disciplina-form'
+import SubjectForm from './components/subject-form'
 import AdminForm from './components/admin-form'
+import PeriodsForm from './components/periods-form'
 import CategoriesForm from './components/categories-form'
 import LicensesForm from './components/licenses-form'
-import DisciplinaDisplay from './components/disciplina-display'
+import SubjectDisplay from './components/subject-display'
 import DeletePageButton from './components/delete-page-button'
 import EditableList from './components/editable-list'
 import ViewSwitcher from './components/view-switcher'
@@ -48,26 +50,28 @@ user.on('change', (changedUser) => {
 const components = [
   {tag: 'navigation', class: Navigation},
   {tag: 'form', class: Form},
-  {tag: 'disciplina-form', class: DisciplinaForm},
+  {tag: 'subject-form', class: SubjectForm},
   {tag: 'admin-form', class: AdminForm},
+  {tag: 'periods-form', class: PeriodsForm},
   {tag: 'categories-form', class: CategoriesForm},
   {tag: 'licenses-form', class: LicensesForm},
-  {tag: 'disciplina-display', class: DisciplinaDisplay},
+  {tag: 'subject-display', class: SubjectDisplay},
   {tag: 'delete-page-button', class: DeletePageButton},
   {tag: 'editable-list', class: EditableList},
   {tag: 'view-switcher', class: ViewSwitcher},
   {tag: 'theme-gallery', class: ThemeGallery},
-  {tag: 'disciplinas-list', class: DisciplinasList, usesDisciplinas: true},
-  {tag: 'categories-filter', class: CategoriesFilter, usesDisciplinas: true},
-  {tag: 'teachers-filter', class: TeachersFilter, usesDisciplinas: true}
+  {tag: 'subjects-list', class: SubjectsList, usesSubjects: true},
+  {tag: 'Periods-filter', class: PeriodsFilter, usesSubjects: true},
+  {tag: 'categories-filter', class: CategoriesFilter, usesSubjects: true},
+  {tag: 'teachers-filter', class: TeachersFilter, usesSubjects: true}
 ]
 for (let component of components) {
   const els = queryByComponent(component.tag)
   if (els.length) {
-    // If the component depends on disciplinas.json, fetch it first (once per page) and pass it
-    if (component.usesDisciplinas) {
-      getDisciplinas().then((disciplinas) => {
-        els.each((index, el) => new component.class({el: $(el), user, params, disciplinas})) // eslint-disable-line
+    // If the component depends on subjects.json, fetch it first (once per page) and pass it
+    if (component.usesSubjects) {
+      getSubjects().then((subjects) => {
+        els.each((index, el) => new component.class({el: $(el), user, params, subjects})) // eslint-disable-line
       })
     // Otherwise simply initialize the component
     } else {
@@ -76,9 +80,9 @@ for (let component of components) {
   }
 }
 
-// Helper function to ensure disciplinas.json is only fetched once per page
-let disciplinasCache
-function getDisciplinas () {
-  disciplinasCache = disciplinasCache || $.getJSON(`${settings.BASE_URL}/disciplinas.json`)
-  return disciplinasCache
+// Helper function to ensure subjects.json is only fetched once per page
+let subjectsCache
+function getSubjects () {
+  subjectsCache = subjectsCache || $.getJSON(`${settings.BASE_URL}/subjects.json`)
+  return subjectsCache
 }

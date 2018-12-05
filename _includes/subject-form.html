@@ -1,0 +1,75 @@
+{% assign schema = include.subject.schema | default: site.schema %}
+{% assign subject_fields = site.data.schemas[schema].subject_fields %}
+{% assign resource_fields = site.data.schemas[schema].resource_fields %}
+{% assign link_fields = site.data.schemas[schema].link_fields %}
+{% assign subject_system_fields = "title|teacher|notes" | split: "|" %}
+{% assign subjects = site.collections | where:"label","subjects" | first %}
+<form data-component="form subject-form"
+  data-file-dir="{{ subjects.relative_directory }}"
+  data-render-dir="subjects"
+  {% if include.subject %}
+    data-file-path="{{ include.subject.path }}"
+    data-render-path="{{ include.subject.url }}"
+  {% endif %}>
+  <input type="hidden" id="schema" name="schema" value="{{ schema }}">
+
+  <fieldset>
+    {% for field in subject_fields %}
+      {% if subject_system_fields contains field.field_name %}
+        {% assign template = field.form_template | default: "form/text.html" %}
+        {% assign field_name = field.field_name %}
+        {% assign value = include.subject[field_name] %}
+        {% include {{ template }} field=field field_name=field_name value=value %}
+      {% endif %}
+    {% endfor %}
+  </fieldset>
+
+  <h2>Materiais Complementares</h2>
+  <div data-component="editable-list" data-item-label="resource">
+    <div data-hook="items">
+    {% for resource in include.subject.resources %}
+      {% include subject-form-resource.html %}
+    {% endfor %}
+    </div>
+
+    <button type="button" class="btn btn-default" data-hook="add-item-btn" title="Adicionar Material"><i class="fa fa-plus"></i> Adicionar Material</button>
+
+    <script type="text/template" data-hook="item-template">
+    {% include subject-form-resource.html %}
+    </script>
+  </div>
+
+  <h2>Links Úteis</h2>
+  <div data-component="editable-list" data-item-label="link">
+    <div data-hook="items">
+    {% for link in include.subject.links %}
+      {% include subject-form-link.html %}
+    {% endfor %}
+    </div>
+
+    <button type="button" class="btn btn-default" data-hook="add-item-btn" title="Adicionar Link"><i class="fa fa-plus"></i> Adicionar Link</button>
+
+    <script type="text/template" data-hook="item-template">
+      {% include subject-form-link.html %}
+      </script>
+  </div>
+
+  <fieldset>
+    <h2>Informações Adicionais</h2>
+    {% for field in subject_fields %}
+      {% unless subject_system_fields contains field.field_name %}
+        {% assign template = field.form_template | default: "form/text.html" %}
+        {% assign field_name = field.field_name %}
+        {% assign value = include.subject[field_name] %}
+        {% include {{ template }} field=field field_name=field_name value=value %}
+      {% endunless %}
+    {% endfor %}
+  </fieldset>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+  {% if include.subject %}
+    <button class="btn btn-danger" data-component="delete-page-button" data-file-path="{{ include.subject.path }}">
+      <i class="fa fa-trash"></i> Deletar Disciplina
+    </button>
+  {% endif %}
+</form>

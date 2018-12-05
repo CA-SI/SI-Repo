@@ -1,0 +1,11 @@
+<tr>
+  <th>{{ include.field.label }}</th>
+  <td>
+    {% if include.value.size %}
+      {% for period in include.value %}
+        <a href="{{ site.baseurl }}/subjects/?period={{ category | slugify }}">{{ period }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+    {% else %}
+      <a href="{{ site.baseurl }}/subjects/?period={{ include.value | slugify }}">{{ include.value }}</a>
+    {% endif %}
+  </td>

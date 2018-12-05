@@ -2,7 +2,7 @@
   <label for="{{ include.field_name }}">{{ include.field.label }}</label>
   <div class="input-group">
     <select class="form-control" id="{{ include.field_name }}" name="{{ include.field_name }}">
-      <option value="">{{ include.field.placeholder | default: "Select..." }}</option>
+      <option value="">{{ include.field.placeholder | default: "Selecione..." }}</option>
       {% for teacher in site.teachers %}
         <option{% if include.value == teacher.title %} selected="selected"{% endif %}>{{ teacher.title }}</option>
       {% endfor %}

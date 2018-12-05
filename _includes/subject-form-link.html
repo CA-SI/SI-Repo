@@ -1,0 +1,11 @@
+<div class="well" data-hook="item">
+  <fieldset>
+  {% for field in link_fields %}
+    {% assign template = field.form_template | default: "form/text.html" %}
+    {% capture field_name %}link[][{{ field.field_name }}]{% endcapture %}
+    {% assign value = link[field[field_name]] %}
+    {% include {{ template }} field=field field_name=field_name value=value %}
+  {% endfor %}
+  </fieldset>
+  <button type="button" class="btn btn-danger btn-sm" data-hook="remove-item-btn"><i class="fa fa-minus"></i> Remover Link</button>
+</div>

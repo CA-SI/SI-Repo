@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label for="{{ include.field_name }}[]">{{ include.field.label }}</label>
+  <select class="form-control select2" id="{{ include.field_name }}[]" name="{{ include.field_name }}[]" multiple="multiple" style="width: 100%">
+    {% for period in site.data.periods %}
+      <option{% if include.value == period.name or include.value contains period.name %} selected="selected"{% endif %}>{{ period.name }}</option>
+    {% endfor %}
+  </select>
+</div>

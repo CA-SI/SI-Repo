@@ -1,10 +1,10 @@
 /**
  * Usage:
  * <form data-component="form"
- *   data-file-dir="_disciplinas"
- *   data-render-dir="disciplinas"
- *   data-file-path="_disciplinas/foo.md"
- *   data-render-path="/disciplinas/foo/"
+ *   data-file-dir="_subjects"
+ *   data-render-dir="subjects"
+ *   data-file-path="_subjects/foo.md"
+ *   data-render-path="/subjects/foo/"
  */
 /* global settings */
 import jsyaml from 'js-yaml'

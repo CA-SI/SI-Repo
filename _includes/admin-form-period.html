@@ -1,9 +1,9 @@
 <div class="well" data-hook="item">
   <fieldset>
-    {% for field in category_fields %}
+    {% for field in period_fields %}
       {% assign template = field.form_template | default: "form/text.html" %}
-      {% capture field_name %}categories[][{{ field.field_name }}]{% endcapture %}
-      {% assign value = category[field[field_name]] %}
+      {% capture field_name %}periods[][{{ field.field_name }}]{% endcapture %}
+      {% assign value = period[field[field_name]] %}
       {% include {{ template }} field=field field_name=field_name value=value %}
     {% endfor %}
   </fieldset>

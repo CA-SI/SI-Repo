@@ -2,7 +2,7 @@
   width: 64px;
 }
 
-disciplina {
+subject {
   display: block;
   border-bottom: 1px #d6d6d6 solid;
   padding-bottom: 20px;
@@ -25,11 +25,11 @@ disciplina {
   margin-bottom: 10px;
 }
 
-.disciplinas-count {
+.subjects-count {
   display: inline-block;
 }
 
-.add-disciplina-btn {
+.add-subject-btn {
   margin-top: 15px;
 }
 

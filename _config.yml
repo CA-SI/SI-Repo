@@ -1,8 +1,8 @@
-title: Sistemas de Informação - UFV CRP
+title: Sistemas de Informação | UFV - CRP
 greeting: Bem Vindo ao Repositório
 description: Um portal leve, livre de backend, de dados abertos e colaborativo.
 baseurl: /SI-Repo
-logo: /img/jkan.png
+logo: /img/si.png
 
 # Site theme
 jkan_theme: Default
@@ -11,21 +11,21 @@ jkan_theme: Default
 github_client_id: 
 gatekeeper_host: 
 
-# Disciplina schema
+# Subject schema
 schema: default
 
 # Nav bar
 navigation:
   - title: Disciplinas
-    url: /disciplinas/
+    url: /subjects/
   - title: Professores
     url: /teachers/
 
 # Collections
 collections:
-  disciplinas:
+  subjects:
     output: true
-    permalink: /disciplinas/:path/
+    permalink: /subjects/:path/
   teachers:
     output: true
     permalink: /teachers/:path/
@@ -34,9 +34,9 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: disciplinas
+      type: subjects
     values:
-      layout: disciplina
+      layout: subject
       category: Uncategorized
       teacher: N/A
   - scope:

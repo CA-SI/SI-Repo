@@ -1,6 +1,6 @@
 # To add fields, make a new schema file in this directory
 # and change the schema setting in _config.yml to its name
-disciplina_fields:
+subject_fields:
   - field_name: title
     label: Title
     datajson: title
@@ -52,7 +52,7 @@ resource_fields:
 
 teacher_fields:
   - field_name: title
-    label: Title
+    label: Nome
   - field_name: description
     label: Description
   - field_name: logo
@@ -60,11 +60,20 @@ teacher_fields:
 
 category_fields:
   - field_name: name
+    label: Nome
+  - field_name: logo
+    label: Logo
+  - field_name: logo_credit
+    label: Créditos do Logo
+  - field_name: featured
+    label: Destaque
+    form_template: form/checkbox.html
+  
+  period_fields:
+  - field_name: name
     label: Name
   - field_name: logo
     label: Logo
   - field_name: logo_credit
     label: Logo Credit
   - field_name: featured
-    label: Featured on Homepage
-    form_template: form/checkbox.html

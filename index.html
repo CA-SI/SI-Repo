@@ -7,7 +7,7 @@ layout: default
   <p>
     {{ site.description }}
   </p>
-  <p><a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/disciplinas" role="button">Comece a Navegar</a></p>
+  <p><a class="btn btn-primary btn-lg" href="{{ site.baseurl }}/subjects" role="button">Comece a Navegar</a></p>
 </div>
 
 <h3>Pesquise por Categoria</h3>
@@ -15,8 +15,8 @@ layout: default
 <div class="homepage-categories">
 {% for category in site.data.categories %}
   {% if category.featured == true %}
-    {% capture logo_alt %}{{ category.name }}{% if category.logo_credit and category.logo_credit != empty %} logo by {{ category.logo_credit }}{% endif %}{% endcapture %}
-    <a href="{{ site.baseurl }}/disciplinas/?category={{ category.name | slugify }}" class="thumbnail" title="{{ logo_alt }}">
+    {% capture logo_alt %}{{ category.name }}{% if category.logo_credit and category.logo_credit != empty %} logo por {{ category.logo_credit }}{% endif %}{% endcapture %}
+    <a href="{{ site.baseurl }}/subjects/?category={{ category.name | slugify }}" class="thumbnail" title="{{ logo_alt }}">
       {% if category.logo and category.logo != empty %}
         <img src="{{ site.baseurl }}{{ category.logo }}" alt="{{ logo_alt }}">
       {% endif %}
